@@ -1,6 +1,6 @@
 package com.distribuida.entities;
 
-public class usuario {
+public class Usuario {
 	  private Long id;
 	    private String nombre;
 	    private String correo;
