@@ -1,4 +1,4 @@
-package com.distribuida.principal;
+package com.distribuida.entities;
 
 public class Usuario {
 	  private Long id;
