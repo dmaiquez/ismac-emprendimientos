@@ -2,11 +2,14 @@ package com.distribuida.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -14,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "cliente")
-public class cliente {
+public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +39,17 @@ public class cliente {
 	private String genero;
 	@Column(name = "fecha_nac")
 	private Date fecha_nac;
+	
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario; 
 
-	public cliente() {
+	
+
+	public Cliente() {
 	}
 
-	public cliente(int idCliente, String cedula, String nombre, String apellido, String direccion, String telefono,
+	public Cliente(int idCliente, String cedula, String nombre, String apellido, String direccion, String telefono,
 			String correo, Date fecha_nac, String genero) {
 		this.idCliente = idCliente;
 		this.cedula = cedula;
@@ -52,7 +61,15 @@ public class cliente {
 		this.genero = genero;
 		this.fecha_nac = fecha_nac;
 	}
+	
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	public int getIdCliente() {
 		return idCliente;
 	}
