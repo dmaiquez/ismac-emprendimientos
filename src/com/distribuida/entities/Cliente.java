@@ -40,17 +40,19 @@ public class Cliente {
 	@Column(name = "fecha_nac")
 	private Date fecha_nac;
 	
+	
 	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinColumn(name = "idUsuario")
-	private Usuario usuario; 
-
+	private Usuario usuario;
 	
 
 	public Cliente() {
 	}
 
+
+
 	public Cliente(int idCliente, String cedula, String nombre, String apellido, String direccion, String telefono,
-			String correo, Date fecha_nac, String genero) {
+			String correo, String genero, Date fecha_nac, Usuario usuario) {
 		this.idCliente = idCliente;
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -60,16 +62,11 @@ public class Cliente {
 		this.correo = correo;
 		this.genero = genero;
 		this.fecha_nac = fecha_nac;
-	}
-	
-	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+
+
 	public int getIdCliente() {
 		return idCliente;
 	}
@@ -141,12 +138,33 @@ public class Cliente {
 	public String getTelefono() {
 		return telefono;
 	}
+	
+	
+
+
+
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+
 
 	@Override
 	public String toString() {
-		return "cliente [idCliente=" + idCliente + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido="
+		return "Cliente [idCliente=" + idCliente + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido="
 				+ apellido + ", direccion=" + direccion + ", telefono=" + telefono + ", correo=" + correo + ", genero="
-				+ genero + ", fecha_nac=" + fecha_nac + "]";
+				+ genero + ", fecha_nac=" + fecha_nac + ", usuario=" + usuario + "]";
 	}
+
+
+
+
 
 }
